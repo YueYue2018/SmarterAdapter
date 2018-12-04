@@ -232,12 +232,16 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
         }
 
         itemBindHelper.bindData(vh, realPosition, this);//数据的绑定
-        //点击事件的绑定
-        vh.bindAllClick(itemClickListener, singleOnCheckedChangeListener, multipleOnCheckedChangeView, onCheckedChangeView, realPosition);
+
+        if (itemBindHelper != null)
+            //点击事件的绑定
+            vh.bindAllClick(itemClickListener, singleOnCheckedChangeListener, multipleOnCheckedChangeView, onCheckedChangeView, realPosition);
+        else
+            vh.bindAllClick(itemBindHelper.getItemProperty(getDataObj(position)).getItemClickListener(),singleOnCheckedChangeListener,multipleOnCheckedChangeView,onCheckedChangeView,realPosition);
         //子view的点击事件
         vh.bindItemClickChild(itemEveryViewClickListenerList, realPosition);
 
-       //选中数据的变化
+        //选中数据的变化
         if (getSelectData().contains(vh.data) && onCheckedChangeView != null) {
             onCheckedChangeView.onCheckedViewChanged(vh, vh.itemView, vh.data, realPosition);
             addSelectPosition(realPosition);
@@ -248,7 +252,7 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
         }
 
         //绑定长按事件
-        vh.bindLongListener(itemBindHelper.getItemLayoutId(),realPosition);
+        vh.bindLongListener(itemBindHelper.getItemLayoutId(), realPosition);
 
     }
 
@@ -349,13 +353,14 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
 
     /**
      * 设置不同布局的长按事件
+     *
      * @return
      */
-    public SmartAdapter addItemLongListenerSparseArray(int layOutId,ItemLongListener itemLongListener) {
-        if(itemLongListenerSparseArray == null){
+    public SmartAdapter addItemLongListenerSparseArray(int layOutId, ItemLongListener itemLongListener) {
+        if (itemLongListenerSparseArray == null) {
             itemLongListenerSparseArray = new SparseArray<>();
         }
-        itemLongListenerSparseArray.put(layOutId,itemLongListener);
+        itemLongListenerSparseArray.put(layOutId, itemLongListener);
         return this;
     }
 
@@ -369,7 +374,7 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
     }
 
     /**
-     *设置全局的长按事件
+     * 设置全局的长按事件
      */
     public SmartAdapter setIteLongListener(ItemLongListener itemLongListener) {
         this.mItemLongListener = itemLongListener;
@@ -1114,7 +1119,7 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
         return this;
     }
 
-       public SmartAdapter addHeaderClickListenerChild(int id, View.OnClickListener itemClickListener) {
+    public SmartAdapter addHeaderClickListenerChild(int id, View.OnClickListener itemClickListener) {
         if (itemClickListener != null) {
             if (itemHeaderChildListenerList == null) {
                 itemHeaderChildListenerList = new SparseArray<>();
@@ -1123,6 +1128,7 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
         }
         return this;
     }
+
     public SmartAdapter addFooterClickListenerChild(int id, View.OnClickListener itemClickListener) {
         if (itemClickListener != null) {
             if (itemFooterChildListenerList == null) {
