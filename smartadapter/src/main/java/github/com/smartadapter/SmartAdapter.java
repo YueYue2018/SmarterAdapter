@@ -233,7 +233,7 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
 
         itemBindHelper.bindData(vh, realPosition, this);//数据的绑定
 
-        if (itemBindHelper != null)
+        if (itemClickListener != null)
             //点击事件的绑定
             vh.bindAllClick(itemClickListener, singleOnCheckedChangeListener, multipleOnCheckedChangeView, onCheckedChangeView, realPosition);
         else
