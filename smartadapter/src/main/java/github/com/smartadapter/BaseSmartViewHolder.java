@@ -43,7 +43,7 @@ public abstract class BaseSmartViewHolder<T> extends RecyclerView.ViewHolder {
     public void bindData(int dataBrId, T object, IBindDataView iBindDataView) {
         this.data = object;
         if(iBindDataView != null){
-            iBindDataView.bindData(itemView,data);
+            iBindDataView.bindData(this,itemView,data);
             return;
         }
         //自定来绑定数据
