@@ -237,7 +237,7 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
             //点击事件的绑定
             vh.bindAllClick(itemClickListener, singleOnCheckedChangeListener, multipleOnCheckedChangeView, onCheckedChangeView, realPosition);
         else
-            vh.bindAllClick(itemBindHelper.getItemProperty(getDataObj(position)).getItemClickListener(),singleOnCheckedChangeListener,multipleOnCheckedChangeView,onCheckedChangeView,realPosition);
+            vh.bindAllClick(itemBindHelper.getItemProperty(getDataObj(position)).getItemClickListener(), singleOnCheckedChangeListener, multipleOnCheckedChangeView, onCheckedChangeView, realPosition);
         //子view的点击事件
         vh.bindItemClickChild(itemEveryViewClickListenerList, realPosition);
 
@@ -779,6 +779,24 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
             count = mHeaderViewLinearLayout.getChildCount();
         }
         return count;
+    }
+
+    public SmartAdapter removeAllHeaderView(){
+        if(mHeaderViewLinearLayout != null){
+            mHeaderViewLinearLayout.removeAllViews();
+        }
+        return this;
+    }
+    public SmartAdapter removeAllFooterView(){
+        if(mFooterViewLinearLayout != null){
+            mFooterViewLinearLayout.removeAllViews();
+        }
+        return this;
+    }
+
+
+    public int getFooterCount() {
+        return mFooterViewLinearLayout == null ? 0 : mFooterViewLinearLayout.getChildCount();
     }
 
     public boolean hasHeader() {
