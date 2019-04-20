@@ -858,8 +858,8 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
 
 
     public SmartAdapter addHeadView(@NonNull View view, boolean isToTop) {
-        checkHeadViewLinearLayout();
         boolean header = hasHeader();
+        checkHeadViewLinearLayout();
         mHeaderViewLinearLayout.addView(view);
         if (!header) {
             notifyItemRangeInserted(0, 1);
