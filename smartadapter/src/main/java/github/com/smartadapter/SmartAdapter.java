@@ -1251,7 +1251,7 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
                 return this;
             }
             if (hasHeader()) {
-                notifyItemRangeRemoved(mDates.size() + 1, data.size());
+                notifyItemRangeInserted(mDates.size() + 1, data.size());
             } else {
                 notifyItemRangeInserted(mDates.size(), data.size());
             }
