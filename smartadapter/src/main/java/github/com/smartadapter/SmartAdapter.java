@@ -1472,11 +1472,11 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
     
     //显示没有数据的视图
     public SmartAdapter showEmpty(boolean  isForce) {
-        if (!isForce && type_current == TYPE_EMPTY)
-            return this;
-        this.type_current = TYPE_EMPTY;
-        checkView();
-        notifyDataSetChanged();
+        if(isForce || type_current != TYPE_EMPTY){
+            this.type_current = TYPE_EMPTY;
+            checkView();
+            notifyDataSetChanged();
+        }
         return this;
     }
 
