@@ -81,17 +81,17 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
 
     /*********************************************加载过程中的过度布局*****************************************************/
     //加载中
-    protected static final int TYPE_LOADING = 0x112235;
+    public static final int TYPE_LOADING = 0x112235;
     //加载失败
-    protected static final int TYPE_FAILED = 0x112236;
+    public static final int TYPE_FAILED = 0x112236;
     //没有有网络
-    protected static final int TYPE_NO_NET = 0x112237;
+    public static final int TYPE_NO_NET = 0x112237;
     //正常的视图
-    protected static final int TYPE_NORMAL = 0x112238;
+    public static final int TYPE_NORMAL = 0x112238;
     //没有数据
-    protected static final int TYPE_EMPTY = 0x112239;
+    public static final int TYPE_EMPTY = 0x112239;
     //当前的状态
-    protected int type_current = TYPE_NORMAL;
+    public int type_current = TYPE_NORMAL;
     /*********************************************************************************************************/
 
 
@@ -1398,6 +1398,13 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
         return this;
     }
 
+    public int getState(){
+        return type_current;
+    }
+    
+   
+    
+    
     //没有网络的示图
     public SmartAdapter setErrorView(int layoutId) {
         return setErrorView(layoutId, null);
@@ -1455,6 +1462,17 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
     //显示没有数据的视图
     public SmartAdapter showEmpty() {
         if (type_current == TYPE_EMPTY)
+            return this;
+        this.type_current = TYPE_EMPTY;
+        checkView();
+        notifyDataSetChanged();
+        return this;
+    }
+    
+    
+    //显示没有数据的视图
+    public SmartAdapter showEmpty(boolean  isForce) {
+        if (!isForce && type_current == TYPE_EMPTY)
             return this;
         this.type_current = TYPE_EMPTY;
         checkView();
