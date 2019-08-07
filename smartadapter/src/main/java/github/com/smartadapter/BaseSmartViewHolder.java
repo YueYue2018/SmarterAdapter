@@ -20,6 +20,13 @@ public abstract class BaseSmartViewHolder<T> extends RecyclerView.ViewHolder {
     protected T data;
     private SmartAdapter smartAdapter;
 
+     public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
     public void setItemProperty(ItemProperty itemProperty) {
         this.itemProperty = itemProperty;
     }
