@@ -1226,7 +1226,7 @@ public class SmartAdapter<VH extends BaseSmartViewHolder> extends RecyclerView.A
     public SmartAdapter addDataToTop(List data) {
         if (data != null && !data.isEmpty()) {
             mDates.addAll(0, data);
-            if (checkLastStateNormal(true, true)) {
+            if (!checkLastStateNormal(true, true)) {
                 return this;
             }
             if (hasHeader()) {
