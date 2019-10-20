@@ -160,7 +160,7 @@ public abstract class BaseSmartViewHolder<T> extends RecyclerView.ViewHolder {
             oldPosition = (int) smartAdapter.getSelectPosition().get(0);//选中的位置
             oldData = smartAdapter.getSelectData().get(0);//选中的数据
             clearSelect();
-            RecyclerView.ViewHolder viewHolder = smartAdapter.getPositionViewHolder(position);
+            RecyclerView.ViewHolder viewHolder = smartAdapter.getPositionViewHolder(oldPosition);
             if (viewHolder != null)
                 oldView = viewHolder.itemView;
             if (oldPosition != position || data != oldData) {//未选中
